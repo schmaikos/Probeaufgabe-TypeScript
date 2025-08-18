@@ -1,0 +1,11 @@
+[
+  { "username": "wrong_user", "password": "secret_sauce" },
+  { "username": "standard_user", "password": "wrong_password" },
+  { "username": "", "password": "secret_sauce" },
+  { "username": "standard_user", "password": "" },
+  { "username": " ", "password": "secret_sauce" },
+  { "username": "standard_user", "password": "   " },
+  { "username": "", "password": "" },
+  { "username": " ", "password": " " }
+  ,{ "username": "wrong_user", "password": "wrong_password" }
+]
