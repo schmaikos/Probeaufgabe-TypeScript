@@ -53,5 +53,3 @@ export class POManager {
     return this._checkoutCompletePage;
   }
 }
-
-module.exports = { POManager };

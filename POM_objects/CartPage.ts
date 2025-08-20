@@ -48,5 +48,3 @@ export class CartPage {
     return price?.trim() || '';
   }
 }
-
-module.exports = { CartPage };
