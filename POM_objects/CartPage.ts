@@ -1,52 +1,53 @@
 import { Page, Locator } from "@playwright/test";
 
 export class CartPage {
-  page          : Page;
-  cartList      : Locator;
-  cartItems     : Locator;
-  checkoutButton: Locator;
-  continueShoppingButton: Locator;
+  // Selectors
+  private  itemTitle: string = ".inventory_item_name";
+  private  itemPrice: string = ".inventory_item_price";
+
+  // Elements
+  private  page: Page;
+  private  cartList: Locator;
+  private  cartItems: Locator;
+  private  checkoutButton: Locator;
+  private  continueShoppingButton: Locator;
 
   constructor(page: Page) {
-  this.page           = page;
-  this.cartList       = page.locator(".cart_list");
-  this.cartItems      = page.locator(".cart_item");
-  this.checkoutButton = page.locator('[data-test="checkout"]');
-  this.continueShoppingButton = page.locator('[data-test="continue-shopping"]');
+    this.page = page;
+    this.cartList = page.locator(".cart_list");
+    this.cartItems = page.locator(".cart_item");
+    this.checkoutButton = page.locator('[data-test="checkout"]');
+    this.continueShoppingButton = page.locator('[data-test="continue-shopping"]');
   }
 
-  removeButton(itemName: string): Locator {
-    return this.page.locator(`button[data-test="remove-${itemName}"]`);
-  }
-
-  itemTitle      : string = ".inventory_item_name";
-
-  // Actions
-  async isLoaded() {
+  async isLoaded(){
     return await this.cartList.isVisible();
   }
 
-  async getCartItems() {
+  async getCartItems(){
     return await this.page.$$eval(this.itemTitle, (items) =>
       items.map((item) => item.textContent || ""),
     );
   }
 
-  removeFromCartButton(itemName: string): Locator {
+  async removeItem(itemName: string){
     const buttonName = itemName.toLowerCase().replace(/ /g, "-");
-    return this.page.locator(`button[data-test="remove-${buttonName}"]`);
+    await this.page.locator(`button[data-test="remove-${buttonName}"]`).click();
   }
 
-  async removeItem(itemName: string) {
-    await this.removeFromCartButton(itemName).click();
-  }
-
-  async proceedToCheckout() {
+  async proceedToCheckout(){
     await this.checkoutButton.click();
   }
 
-  async continueShopping() {
+  async continueShopping(){
     await this.continueShoppingButton.click();
+  }
+
+  async getItemPrice(itemName: string){
+    const itemLocator = await this.page.locator('.cart_item').filter({ hasText: itemName });
+    const priceLocator = await itemLocator.locator(this.itemPrice);
+    const price = await priceLocator.textContent();
+    return price?.trim() || '';
   }
 }
 

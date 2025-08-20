@@ -1,10 +1,10 @@
 import { Page, Locator } from "@playwright/test";
 
 export class CheckoutCompletePage {
-  page          : Page;
-  completeHeader: Locator;
-  completeText  : Locator;
-  backHomeButton: Locator;
+  private page          : Page;
+  private completeHeader: Locator;
+  private completeText  : Locator;
+  private backHomeButton: Locator;
 
   constructor(page: Page) {
     this.page           = page;
@@ -30,5 +30,3 @@ export class CheckoutCompletePage {
     await this.backHomeButton.click();
   }
 }
-
-module.exports = { CheckoutCompletePage };

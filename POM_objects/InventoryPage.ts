@@ -1,45 +1,34 @@
 import { Page, Locator } from "@playwright/test";
 
 export class InventoryPage {
-  page              : Page;
-  inventoryContainer: Locator;
-  inventoryItems    : Locator;
-  cartIcon          : Locator;
-  sortDropdown      : Locator;
+  private itemTitle: string       = ".inventory_item_name";
+  private itemDescription: string = ".inventory_item_desc";
+  private itemPrice: string       = ".inventory_item_price";
+
+  private page              : Page;
+  private inventoryContainer: Locator;
+  private inventoryItems    : Locator;
+  private cartIcon          : Locator;
+  private sortDropdown      : Locator;
 
   constructor(page: Page) {
     this.page               = page;
     this.inventoryContainer = page.locator(".inventory_list");
     this.inventoryItems     = page.locator(".inventory_item");
     this.cartIcon           = page.locator(".shopping_cart_link");
-    this.sortDropdown       = page.locator(".product_sort_container");
+    this.sortDropdown       = page.locator('[data-test="product_sort_container"]');
+  }
+
+  async isLoaded() {
+    return await this.inventoryContainer.isVisible();
   }
 
   async selectSortOption(option: string) {
-    await this.sortDropdown.click();
-    await this.sortDropdown.selectOption({ label: option });
+    await this.sortDropdown.selectOption(option);
   }
 
   async getSelectedSortOption() {
     return await this.sortDropdown.inputValue();
-  }
-
-  addToCartButton(itemName: string): Locator {
-    const buttonName = itemName.toLowerCase().replace(/ /g, "-");
-    return this.page.locator(`button[data-test="add-to-cart-${buttonName}"]`);
-  }
-
-  removeFromCartButton(itemName: string): Locator {
-    const buttonName = itemName.toLowerCase().replace(/ /g, "-");
-    return this.page.locator(`button[data-test="remove-${buttonName}"]`);
-  }
-
-  itemTitle       : string = ".inventory_item_name";
-  itemDescription: string  = ".inventory_item_desc";
-  itemPrice       : string = ".inventory_item_price";
-
-  async isLoaded() {
-    return await this.inventoryContainer.isVisible();
   }
 
   async getInventoryItems() {
@@ -48,28 +37,28 @@ export class InventoryPage {
     );
   }
 
-  async addItemToCart(itemName: string) {
-    await this.addToCartButton(itemName).click();
+  async addItemToCart(itemName: string){
+    const buttonName = itemName.toLowerCase().replace(/ /g, "-");
+    await this.page.locator(`button[data-test="add-to-cart-${buttonName}"]`).click();
   }
 
   async removeItemFromCart(itemName: string) {
-    await this.removeFromCartButton(itemName).click();
+    const buttonName = itemName.toLowerCase().replace(/ /g, "-");
+    await this.page.locator(`button[data-test="remove-${buttonName}"]`).click();
   }
 
   async goToCart() {
     await this.cartIcon.click();
   }
 
-  async getItemImageLocator(itemName: string) {
-  return this.page.locator(`img[alt='${itemName}']`);
+  async getItemImageLocator(itemName: string){
+    return await this.page.locator(`img[alt='${itemName}']`);
   }
 
-  async getItemPrice(itemName: string) {
-    const itemLocator = await this.page.locator('.inventory_item').filter({ hasText: itemName });
-    const priceLocator = await itemLocator.locator('.inventory_item_price');
-    const price = await priceLocator.textContent();
+  async getItemPrice(itemName: string){
+    const itemLocator  = this.page.locator('.inventory_item').filter({ hasText: itemName });
+    const priceLocator = itemLocator.locator(this.itemPrice);
+    const price        = await priceLocator.textContent();
     return price?.trim() || '';
   }
 }
-
-module.exports = { InventoryPage };

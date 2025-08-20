@@ -1,11 +1,13 @@
 import { Page, Locator } from "@playwright/test";
 
+const BASE_URL = 'https://www.saucedemo.com/';
+
 export class LoginPage {
-  page         : Page;
-  usernameInput: Locator;
-  passwordInput: Locator;
-  loginButton  : Locator;
-  errorMessage : Locator;
+  private page         : Page;
+  private usernameInput: Locator;
+  private passwordInput: Locator;
+  private loginButton  : Locator;
+  private errorMessage : Locator;
 
   constructor(page: Page) {
     this.page          = page;
@@ -20,15 +22,19 @@ export class LoginPage {
     return await this.usernameInput.isVisible();
   }
 
-  async gotoLandigPage() {
-    return this.page.goto('https://www.saucedemo.com/');
+  async gotoLandingPage(){
+    return await this.page.goto(BASE_URL);
   }
 
   async login(username: string, password: string) {
-  await this.usernameInput.fill(username);
-  await this.passwordInput.fill(password);
-  await this.loginButton.click();
+    await this.usernameInput.fill(username);
+    await this.passwordInput.fill(password);
+    await this.loginButton.click();
+  }
+
+  async getErrorMessage(){
+    return await this.errorMessage.isVisible() ? 
+      await this.errorMessage.textContent(): 
+      null;
   }
 }
-
-module.exports = { LoginPage };

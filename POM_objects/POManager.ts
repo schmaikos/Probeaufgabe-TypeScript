@@ -7,46 +7,50 @@ import { CheckoutStepTwoPage } from "./CheckoutStepTwoPage";
 import { CheckoutCompletePage } from "./CheckoutCompletePage";
 
 export class POManager {
-  page                : Page;
-  loginPage           : LoginPage;
-  inventoryPage       : InventoryPage;
-  cartPage            : CartPage;
-  checkoutStepOnePage : CheckoutStepOnePage;
-  checkoutStepTwoPage : CheckoutStepTwoPage;
-  checkoutCompletePage: CheckoutCompletePage;
+  private _page                : Page;
+  private _loginPage           : LoginPage;
+  private _inventoryPage       : InventoryPage;
+  private _cartPage            : CartPage;
+  private _checkoutStepOnePage : CheckoutStepOnePage;
+  private _checkoutStepTwoPage : CheckoutStepTwoPage;
+  private _checkoutCompletePage: CheckoutCompletePage;
 
   constructor(page: Page) {
-    this.page                 = page;
-    this.loginPage            = new LoginPage(page);
-    this.inventoryPage        = new InventoryPage(page);
-    this.cartPage             = new CartPage(page);
-    this.checkoutStepOnePage  = new CheckoutStepOnePage(page);
-    this.checkoutStepTwoPage  = new CheckoutStepTwoPage(page);
-    this.checkoutCompletePage = new CheckoutCompletePage(page);
+    this._page                 = page;
+    this._loginPage            = new LoginPage(page);
+    this._inventoryPage        = new InventoryPage(page);
+    this._cartPage             = new CartPage(page);
+    this._checkoutStepOnePage  = new CheckoutStepOnePage(page);
+    this._checkoutStepTwoPage  = new CheckoutStepTwoPage(page);
+    this._checkoutCompletePage = new CheckoutCompletePage(page);
   }
 
-  getLoginPage(): LoginPage {
-    return this.loginPage;
+  get page(): Page {
+    return this._page;
   }
 
-  getInventoryPage(): InventoryPage {
-    return this.inventoryPage;
+  get loginPage(): LoginPage {
+    return this._loginPage;
   }
 
-  getCartPage(): CartPage {
-    return this.cartPage;
+  get inventoryPage(): InventoryPage {
+    return this._inventoryPage;
   }
 
-  getCheckoutStepOnePage(): CheckoutStepOnePage {
-    return this.checkoutStepOnePage;
+  get cartPage(): CartPage {
+    return this._cartPage;
   }
 
-  getCheckoutStepTwoPage(): CheckoutStepTwoPage {
-    return this.checkoutStepTwoPage;
+  get checkoutStepOnePage(): CheckoutStepOnePage {
+    return this._checkoutStepOnePage;
   }
 
-  getCheckoutCompletePage(): CheckoutCompletePage {
-    return this.checkoutCompletePage;
+  get checkoutStepTwoPage(): CheckoutStepTwoPage {
+    return this._checkoutStepTwoPage;
+  }
+
+  get checkoutCompletePage(): CheckoutCompletePage {
+    return this._checkoutCompletePage;
   }
 }
 

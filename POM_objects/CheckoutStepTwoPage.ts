@@ -1,13 +1,13 @@
 import { Page, Locator } from "@playwright/test";
 
 export class CheckoutStepTwoPage {
-  page            : Page;
-  summaryContainer: Locator;
-  finishButton    : Locator;
-  cancelButton    : Locator;
-  itemTotal       : Locator;
-  tax             : Locator;
-  total           : Locator;
+  private page            : Page;
+  private summaryContainer: Locator;
+  private finishButton    : Locator;
+  private cancelButton    : Locator;
+  private itemTotal       : Locator;
+  private tax             : Locator;
+  private total           : Locator;
 
   constructor(page: Page) {
     this.page             = page;
@@ -19,30 +19,27 @@ export class CheckoutStepTwoPage {
     this.total            = page.locator(".summary_total_label");
   }
 
-
-  async isLoaded() {
+  async isLoaded(){
     return await this.summaryContainer.isVisible();
   }
 
-  async finishCheckout() {
+  async finishCheckout(){
     await this.finishButton.click();
   }
 
-  async cancelCheckout() {
+  async cancelCheckout(){
     await this.cancelButton.click();
   }
 
-  async getItemTotal() {
+  async getItemTotal(){
     return await this.itemTotal.textContent();
   }
 
-  async getTax() {
+  async getTax(){
     return await this.tax.textContent();
   }
 
-  async getTotal() {
+  async getTotal(){
     return await this.total.textContent();
   }
 }
-
-module.exports = { CheckoutStepTwoPage };
