@@ -1,11 +1,9 @@
 import { Page, Locator } from "@playwright/test";
 
 export class CartPage {
-  // Selectors
   private  itemTitle: string = ".inventory_item_name";
   private  itemPrice: string = ".inventory_item_price";
 
-  // Elements
   private  page: Page;
   private  cartList: Locator;
   private  cartItems: Locator;
