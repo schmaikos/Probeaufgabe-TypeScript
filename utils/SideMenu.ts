@@ -52,4 +52,22 @@ export class SideMenu {
   async clickResetAppState() {
     await this.resetAppStateLink.click();
   }
+
+  // Check if menu is open
+  async isMenuOpen() {
+    return await this.sideMenu.isVisible();
+  }
+
+  // Logout from application
+  async logout() {
+    await this.openMenu();
+    await this.clickLogout();
+  }
+
+  // Reset app state through menu
+  async resetAppState() {
+    await this.openMenu();
+    await this.clickResetAppState();
+    await this.closeMenu();
+  }
 }

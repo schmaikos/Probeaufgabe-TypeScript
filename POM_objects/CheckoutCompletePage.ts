@@ -41,4 +41,11 @@ export class CheckoutCompletePage {
   async backToProducts() {
     await this.backHomeButton.click();
   }
+
+  // Get confirmation message (combination of header and text)
+  async getConfirmationMessage() {
+    const header = await this.getCompleteHeader();
+    const text = await this.getCompleteText();
+    return `${header} ${text}`;
+  }
 }

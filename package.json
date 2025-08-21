@@ -7,10 +7,10 @@
     "@types/node": "^24.3.0"
   },
   "scripts": {
-    "format": "tsfmt --replace POM_objects/CartPage.ts POM_objects/CheckoutCompletePage.ts POM_objects/CheckoutStepOnePage.ts POM_objects/CheckoutStepTwoPage.ts POM_objects/InventoryPage.ts POM_objects/ItemDetailPage.ts POM_objects/LoginPage.ts POM_objects/POManager.ts tests/loginTests.spec.ts tests/otherUsersTests.spec.ts tests/standardUserTests.spec.ts utils/CartBadge.ts utils/InventoryItem.ts utils/SideMenu.ts",
-    "format-check": "tsfmt --verify POM_objects/CartPage.ts POM_objects/CheckoutCompletePage.ts POM_objects/CheckoutStepOnePage.ts POM_objects/CheckoutStepTwoPage.ts POM_objects/InventoryPage.ts POM_objects/ItemDetailPage.ts POM_objects/LoginPage.ts POM_objects/POManager.ts tests/loginTests.spec.ts tests/otherUsersTests.spec.ts tests/standardUserTests.spec.ts utils/CartBadge.ts utils/InventoryItem.ts utils/SideMenu.ts",
+    "format": "tsfmt --replace POM_objects/CartPage.ts POM_objects/CheckoutCompletePage.ts POM_objects/CheckoutStepOnePage.ts POM_objects/CheckoutStepTwoPage.ts POM_objects/InventoryPage.ts POM_objects/ItemDetailPage.ts POM_objects/LoginPage.ts POM_objects/POManager.ts tests/loginTests.spec.ts  tests/standardUserTests.spec.ts utils/CartBadge.ts utils/InventoryItem.ts utils/SideMenu.ts",
+    "format-check": "tsfmt --verify POM_objects/CartPage.ts POM_objects/CheckoutCompletePage.ts POM_objects/CheckoutStepOnePage.ts POM_objects/CheckoutStepTwoPage.ts POM_objects/InventoryPage.ts POM_objects/ItemDetailPage.ts POM_objects/LoginPage.ts POM_objects/POManager.ts tests/loginTests.spec.ts  tests/standardUserTests.spec.ts utils/CartBadge.ts utils/InventoryItem.ts utils/SideMenu.ts",
     "format-pom": "tsfmt --replace POM_objects/CartPage.ts POM_objects/CheckoutCompletePage.ts POM_objects/CheckoutStepOnePage.ts POM_objects/CheckoutStepTwoPage.ts POM_objects/InventoryPage.ts POM_objects/ItemDetailPage.ts POM_objects/LoginPage.ts POM_objects/POManager.ts",
-    "format-tests": "tsfmt --replace tests/loginTests.spec.ts tests/otherUsersTests.spec.ts tests/standardUserTests.spec.ts",
+    "format-tests": "tsfmt --replace tests/loginTests.spec.ts tests/standardUserTests.spec.ts",
     "format-utils": "tsfmt --replace utils/CartBadge.ts utils/InventoryItem.ts utils/SideMenu.ts"
   }
 }
