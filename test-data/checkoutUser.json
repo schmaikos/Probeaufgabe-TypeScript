@@ -1,7 +1,7 @@
 [
   {
     "firstName": "John",
-    "lastName": "Doe",
-    "zip": "12345"
+    "lastName" : "Doe",
+    "zip"      : "12345"
   }
 ]

@@ -1,6 +1,8 @@
 import { Page, Locator } from "@playwright/test";
 
+// Page Object for checkout step 1
 export class CheckoutStepOnePage {
+  // Elements
   page           : Page;
   firstNameInput : Locator;
   lastNameInput  : Locator;
@@ -19,25 +21,29 @@ export class CheckoutStepOnePage {
     this.errorMessage    = page.locator('[data-test="error"]');
   }
 
-
+  // Check if checkout step 1 is loaded
   async isLoaded() {
     return await this.firstNameInput.isVisible();
   }
 
+  // Fill checkout form
   async fillCheckoutForm(firstName: string, lastName: string, postalCode: string) {
     await this.firstNameInput.fill(firstName);
     await this.lastNameInput.fill(lastName);
     await this.postalCodeInput.fill(postalCode);
   }
 
+  // Continue to checkout step 2
   async continue() {
     await this.continueButton.click();
   }
 
+  // Cancel checkout and return to cart
   async cancel() {
     await this.cancelButton.click();
   }
 
+  // Get error message if form validation fails
   async getErrorMessage() {
     if (await this.errorMessage.isVisible()) {
       return await this.errorMessage.textContent();
@@ -45,5 +51,3 @@ export class CheckoutStepOnePage {
     return null;
   }
 }
-
-module.exports = { CheckoutStepOnePage };

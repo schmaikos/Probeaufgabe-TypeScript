@@ -1,53 +1,66 @@
 import { Page } from "@playwright/test";
 import { LoginPage } from "./LoginPage";
 import { InventoryPage } from "./InventoryPage";
+import { ItemDetailPage } from "./ItemDetailPage";
 import { CartPage } from "./CartPage";
 import { CheckoutStepOnePage } from "./CheckoutStepOnePage";
 import { CheckoutStepTwoPage } from "./CheckoutStepTwoPage";
 import { CheckoutCompletePage } from "./CheckoutCompletePage";
 
+// Manager class to initialize and provide access to all page objects
 export class POManager {
-  page                : Page;
-  loginPage           : LoginPage;
-  inventoryPage       : InventoryPage;
-  cartPage            : CartPage;
-  checkoutStepOnePage : CheckoutStepOnePage;
-  checkoutStepTwoPage : CheckoutStepTwoPage;
-  checkoutCompletePage: CheckoutCompletePage;
+  // Page object instances
+  _page                : Page;
+  _loginPage           : LoginPage;
+  _inventoryPage       : InventoryPage;
+  _itemDetailPage      : ItemDetailPage;
+  _cartPage            : CartPage;
+  _checkoutStepOnePage : CheckoutStepOnePage;
+  _checkoutStepTwoPage : CheckoutStepTwoPage;
+  _checkoutCompletePage: CheckoutCompletePage;
 
   constructor(page: Page) {
-    this.page                 = page;
-    this.loginPage            = new LoginPage(page);
-    this.inventoryPage        = new InventoryPage(page);
-    this.cartPage             = new CartPage(page);
-    this.checkoutStepOnePage  = new CheckoutStepOnePage(page);
-    this.checkoutStepTwoPage  = new CheckoutStepTwoPage(page);
-    this.checkoutCompletePage = new CheckoutCompletePage(page);
+    // Initialize all page objects
+    this._page                 = page;
+    this._loginPage            = new LoginPage(page);
+    this._inventoryPage        = new InventoryPage(page);
+    this._itemDetailPage       = new ItemDetailPage(page);
+    this._cartPage             = new CartPage(page);
+    this._checkoutStepOnePage  = new CheckoutStepOnePage(page);
+    this._checkoutStepTwoPage  = new CheckoutStepTwoPage(page);
+    this._checkoutCompletePage = new CheckoutCompletePage(page);
   }
 
-  getLoginPage(): LoginPage {
-    return this.loginPage;
+  // Getter methods to access page objects
+  get page(): Page {
+    return this._page;
   }
 
-  getInventoryPage(): InventoryPage {
-    return this.inventoryPage;
+  get loginPage(): LoginPage {
+    return this._loginPage;
   }
 
-  getCartPage(): CartPage {
-    return this.cartPage;
+  get inventoryPage(): InventoryPage {
+    return this._inventoryPage;
   }
 
-  getCheckoutStepOnePage(): CheckoutStepOnePage {
-    return this.checkoutStepOnePage;
+  get itemDetailPage(): ItemDetailPage {
+    return this._itemDetailPage;
   }
 
-  getCheckoutStepTwoPage(): CheckoutStepTwoPage {
-    return this.checkoutStepTwoPage;
+  get cartPage(): CartPage {
+    return this._cartPage;
   }
 
-  getCheckoutCompletePage(): CheckoutCompletePage {
-    return this.checkoutCompletePage;
+  get checkoutStepOnePage(): CheckoutStepOnePage {
+    return this._checkoutStepOnePage;
+  }
+
+  get checkoutStepTwoPage(): CheckoutStepTwoPage {
+    return this._checkoutStepTwoPage;
+  }
+
+  get checkoutCompletePage(): CheckoutCompletePage {
+    return this._checkoutCompletePage;
   }
 }
-
-module.exports = { POManager };
