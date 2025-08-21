@@ -1,13 +1,15 @@
 import { Page, Locator } from "@playwright/test";
 
+// Page Object for checkout step 1
 export class CheckoutStepOnePage {
-  private page           : Page;
-  private firstNameInput : Locator;
-  private lastNameInput  : Locator;
-  private postalCodeInput: Locator;
-  private continueButton : Locator;
-  private cancelButton   : Locator;
-  private errorMessage   : Locator;
+  // Elements
+  page           : Page;
+  firstNameInput : Locator;
+  lastNameInput  : Locator;
+  postalCodeInput: Locator;
+  continueButton : Locator;
+  cancelButton   : Locator;
+  errorMessage   : Locator;
 
   constructor(page: Page) {
     this.page            = page;
@@ -19,25 +21,30 @@ export class CheckoutStepOnePage {
     this.errorMessage    = page.locator('[data-test="error"]');
   }
 
-  async isLoaded(){
+  // Check if checkout step 1 is loaded
+  async isLoaded() {
     return await this.firstNameInput.isVisible();
   }
 
-  async fillCheckoutForm(firstName: string, lastName: string, postalCode: string){
+  // Fill checkout form
+  async fillCheckoutForm(firstName: string, lastName: string, postalCode: string) {
     await this.firstNameInput.fill(firstName);
     await this.lastNameInput.fill(lastName);
     await this.postalCodeInput.fill(postalCode);
   }
 
-  async continue(){
+  // Continue to checkout step 2
+  async continue() {
     await this.continueButton.click();
   }
 
-  async cancel(){
+  // Cancel checkout and return to cart
+  async cancel() {
     await this.cancelButton.click();
   }
 
-  async getErrorMessage(){
+  // Get error message if form validation fails
+  async getErrorMessage() {
     if (await this.errorMessage.isVisible()) {
       return await this.errorMessage.textContent();
     }

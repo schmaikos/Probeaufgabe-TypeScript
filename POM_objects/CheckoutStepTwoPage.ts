@@ -1,13 +1,15 @@
 import { Page, Locator } from "@playwright/test";
 
+// Page Object for checkout step 2
 export class CheckoutStepTwoPage {
-  private page            : Page;
-  private summaryContainer: Locator;
-  private finishButton    : Locator;
-  private cancelButton    : Locator;
-  private itemTotal       : Locator;
-  private tax             : Locator;
-  private total           : Locator;
+  // Elements
+  page            : Page;
+  summaryContainer: Locator;
+  finishButton    : Locator;
+  cancelButton    : Locator;
+  itemTotal       : Locator;
+  tax             : Locator;
+  total           : Locator;
 
   constructor(page: Page) {
     this.page             = page;
@@ -19,27 +21,33 @@ export class CheckoutStepTwoPage {
     this.total            = page.locator(".summary_total_label");
   }
 
-  async isLoaded(){
+  // Check if checkout summary page is loaded
+  async isLoaded() {
     return await this.summaryContainer.isVisible();
   }
 
-  async finishCheckout(){
+  // Complete the order
+  async finishCheckout() {
     await this.finishButton.click();
   }
 
-  async cancelCheckout(){
+  // Cancel checkout and return to cart
+  async cancelCheckout() {
     await this.cancelButton.click();
   }
 
-  async getItemTotal(){
+  // Get subtotal amount
+  async getItemTotal() {
     return await this.itemTotal.textContent();
   }
 
-  async getTax(){
+  // Get tax amount
+  async getTax() {
     return await this.tax.textContent();
   }
 
-  async getTotal(){
+  // Get total amount
+  async getTotal() {
     return await this.total.textContent();
   }
 }

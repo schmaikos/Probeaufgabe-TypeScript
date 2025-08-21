@@ -1,0 +1,8 @@
+{
+  "indentSize": 2,
+  "tabSize": 2,
+  "newLineCharacter": "\n",
+  "convertTabsToSpaces": true,
+  "trimTrailingWhitespace": true,
+  "insertFinalNewline": true
+}
