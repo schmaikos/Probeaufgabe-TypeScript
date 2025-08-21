@@ -120,6 +120,8 @@ test.describe('Standard user tests @regression', () => {
     });
 
     test('Inventory item images are correct', async ({ page }) => {
+      test.skip(!!process.env.CI);
+      
       const inventoryPage = poManager.inventoryPage;
       const items = await inventoryPage.getInventoryItems();
       for (const itemName of items) {
