@@ -1,4 +1,4 @@
-# Probeaufgabe-TypeScriptProbeaufgabe – TypeScript
+# Probeaufgabe-TypeScript
 
 Das Ziel ist dieses Projekt zu entwickeln und auf GitHub zu commiten. Bitte erstelle dafür ein public
 repository und sende es uns zu, wenn du deine Aufgabe abgeschlossen hast.
